@@ -1,0 +1,1 @@
+{"mcpServers":{"node-command":{"headers":{"Authorization":"Bearer ${NC_TOKEN}"},"url":"https://mcp.nodecommand.app/mcp"}}}

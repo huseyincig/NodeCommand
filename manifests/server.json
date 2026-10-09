@@ -1,0 +1,1 @@
+{"description":"Node Command hosted MCP server","mcp_endpoint":"https://mcp.nodecommand.app/mcp","name":"node-command","protocol":{"mcp":"2026-07-28"},"tool_contract":{"fingerprint":"sha256:fe46c88f904da7989296b8d9e48754aa900f4535e5c40774c71a8c04f0bce4f8","tool_count":46,"version":"11.19.0"}}

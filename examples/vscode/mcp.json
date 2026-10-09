@@ -1,0 +1,1 @@
+{"inputs":[{"description":"Node Command personal MCP token","id":"nc-token","password":true}],"servers":{"node-command":{"headers":{"Authorization":"Bearer ${input:nc-token}"},"url":"https://mcp.nodecommand.app/mcp"}}}
