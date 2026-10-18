@@ -1,22 +1,63 @@
 # Agent Installation
 
-Run the enrollment command from your dashboard (it embeds a one-time
-enrollment token). Manual equivalents:
+The Node Command agent is the open-source runtime
+([nc-agent](https://github.com/huseyincig/nc-agent)) that executes admitted
+operations on your machine. It connects outbound over an encrypted
+WebSocket — no inbound ports and no firewall rules.
 
-**Linux:**
+## Requirements
 
-```sh
-curl -fsSL https://agent.nodecommand.app/install.sh | sudo -E sh -s -- <HOST_ID> <ENROLL_TOKEN>
+- A current Node.js runtime (the installer enforces the supported engine
+  version).
+- A browser sign-in as the workspace user who owns the machine.
+
+## Install (recommended: one command)
+
+```bash
+npx nc-agent
 ```
 
-**macOS:** same as Linux (runs as a launchd service).
+1. The CLI requests a device authorization and prints an eight-character
+   code plus a verification URL.
+2. Open the URL, sign in, enter the code, and approve the request.
+3. The agent enrolls the machine, installs itself as a service, and
+   verifies itself online.
 
-**Windows (PowerShell, admin):**
+Install mode is automatic — elevated shells install machine-wide,
+everything else installs per-user. There are no prompts and no manual
+service files.
 
-```powershell
-iwr -useb https://agent.nodecommand.app/install.ps1 -OutFile "$env:TEMP\nc.ps1"
-powershell -ExecutionPolicy Bypass -File "$env:TEMP\nc.ps1" -HostId <HOST_ID> -Token <ENROLL_TOKEN>
+### Direct enrollment command
+
+The dashboard offers a per-machine command:
+
+```bash
+npx nc-agent <host_id> <token>
 ```
 
-**Uninstall:** see the `nc-agent` repo (`docs/UNINSTALL.md`) or the
-dashboard device panel. Full source and service definitions are public.
+Use it for scripted or hands-off enrollment. Enrollment tokens are
+single-use and short-lived. Re-running `npx nc-agent` without arguments
+resumes a minted-but-unused enrollment or starts a fresh one.
+
+## Verify
+
+The machine appears in your dashboard fleet as **online** once it holds a
+live authenticated session. If it stays offline, see
+[`troubleshooting.md`](troubleshooting.md).
+
+## Updates
+
+The agent updates itself from staged, hash-verified releases and rolls back
+automatically if a new release fails its post-update health check. No
+manual update step is required; update status is visible in the dashboard.
+
+## Uninstall
+
+```bash
+npx nc-agent remove
+```
+
+This removes the local runtime and service registration while preserving
+device identity, so the machine can reconnect without a new enrollment.
+Server-side removal is a separate dashboard action. Details:
+[nc-agent `docs/UNINSTALL.md`](https://github.com/huseyincig/nc-agent/blob/main/docs/UNINSTALL.md).

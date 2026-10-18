@@ -1,9 +1,13 @@
 # Clients (Hosts)
 
 - Each enrolled machine is a **client** with an ID like `nc_<64 hex>`.
-- List your clients in the dashboard fleet view.
-- Host-targeting tools require explicit `client_id`; the platform never
-  guesses a host.
-- A client shows `online` only with a live authenticated session; stale
-  rows never count as ready.
-- Remove a machine with forget (hub record) or uninstall (device cleanup).
+- The dashboard fleet view lists every machine with live status, platform,
+  and role assignments.
+- Host-targeting requests require an explicit machine ID; the platform
+  never guesses a target.
+- A client counts as **online** only while it holds a live authenticated
+  session — stale records never report as ready.
+- Team members see the machines they are granted, scoped by role
+  (Viewer, Operator, or Admin).
+- Remove a machine with *forget* (drops the hub record) or *uninstall*
+  (cleans the device); see [`agent-installation.md`](agent-installation.md).

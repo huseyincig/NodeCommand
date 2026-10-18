@@ -1,1 +1,1 @@
-{"node-command":{"headers":{"Authorization":"Bearer ${NC_TOKEN}"},"url":"https://mcp.nodecommand.app/mcp"}}
+{"$schema":"https://opencode.ai/config.json","mcp":{"node-command":{"type":"remote","url":"https://mcp.nodecommand.app/mcp","headers":{"Authorization":"Bearer {env:NC_TOKEN}"}}}}

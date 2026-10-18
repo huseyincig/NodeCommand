@@ -1,56 +1,71 @@
 # Getting Started
 
+This guide takes you from zero to operating a machine from your AI
+assistant.
+
 ## 1. Create your account
 
-Sign up at the Node Command hub and enroll your first machine from the dashboard.
-You will receive an enrollment command for your OS.
+Sign up at [nodecommand.app](https://nodecommand.app) and open the
+dashboard. You can enroll your first machine right away — the dashboard
+offers both the one-command install and a direct enrollment command for
+each machine.
 
 ## 2. Install the agent
 
-See `agent-installation.md`. One-liner per OS (Linux/macOS/Windows) plus
-uninstall instructions. Sources: `nc-agent` repo.
+On the machine you want to control, run:
+
+```bash
+npx nc-agent
+```
+
+The CLI prints an eight-character code and a verification URL. Open the URL,
+sign in, enter the code, and approve. The agent then enrolls the machine,
+installs itself as a service (machine-wide when elevated, per-user
+otherwise), and comes online. No inbound ports, no firewall changes.
+
+The dashboard also shows a ready-made command for the machine you are
+enrolling:
+
+```bash
+npx nc-agent <host_id> <token>
+```
+
+which redeems that enrollment directly — useful for scripted setups.
+Enrollment tokens are single-use and short-lived.
+
+More detail: [`agent-installation.md`](agent-installation.md).
 
 ## 3. Connect your AI client
 
-Add the Node Command MCP endpoint to your client (examples in `examples/`):
+Add the Node Command MCP endpoint to your client:
 
 ```text
 https://mcp.nodecommand.app/mcp
 ```
 
-There is nothing to copy out of the dashboard: your app logs in by
-itself using OAuth 2.1 (PKCE, no client secret) with the public client
-id `nc-cli`. It opens your browser, you log in once and approve, and
-the app receives its own bearer token (plus a refresh token) on a
-loopback callback. Tokens are never shown in, stored in, or pasted
-through the dashboard — if a page asks you to paste a token, stop.
+Clients that support MCP OAuth discovery handle sign-in automatically: the
+client opens your browser once, you approve, and it receives its own
+short-lived token. Nothing is copied out of the dashboard — if a page ever
+asks you to paste a token, stop.
 
-Manual equivalent of what the app does (any loopback port works):
+If your client takes a static `Authorization: Bearer` header instead,
+create a personal access token in the dashboard and use it there. The
+platform never displays or stores tokens in plaintext.
 
-```text
-1. Build a code_verifier + code_challenge (S256).
-2. Open in your browser (replace PORT and CHALLENGE):
-   https://mcp.nodecommand.app/oauth/authorize
-     ?client_id=nc-cli
-     &redirect_uri=http://127.0.0.1:PORT/callback
-     &response_type=code
-     &scope=mcp:write
-     &code_challenge=CHALLENGE
-     &code_challenge_method=S256
-3. Log in, approve, copy the `code` your loopback listener receives.
-4. POST /oauth/token { grant_type, code, client_id, redirect_uri,
-   code_verifier } -> access_token, refresh_token, scope.
-5. Call MCP with `Authorization: Bearer <access_token>` and, to pin a
-   host, `X-Target-Client: nc_<64 hex>`.
-```
+Ready-made client configurations: [`../examples/`](../examples/).
 
-A token grants only what you approved (typical scope: `mcp:write`,
-which excludes admin tools). It expires; the app refreshes it with
-the refresh token. To see your connected apps or disconnect one,
-use your login session against `GET /api/oauth/grants` and
-`POST /api/oauth/revoke` — no token secret is ever displayed.
+## 4. Choose a machine and ask
 
-## 4. Pick a host and act
+Every host-targeting request names an explicit machine — there is no
+implicit default. List your fleet from the assistant or the dashboard,
+pick a machine, and describe what you want in natural language.
 
-Every host-targeting tool requires an explicit `client_id` (see
-`docs/clients.md`). There is no implicit default host.
+## Where to go next
+
+- Security model: [`security.md`](security.md)
+- Machine management: [`clients.md`](clients.md)
+- Troubleshooting: [`troubleshooting.md`](troubleshooting.md)
+- Architecture: [`architecture.md`](architecture.md)
+- Source and contracts:
+  [nc-agent](https://github.com/huseyincig/nc-agent) ·
+  [nc-protocol](https://github.com/huseyincig/nc-protocol)
