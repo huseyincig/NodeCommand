@@ -23,11 +23,11 @@ sign in, enter the code, and approve. The agent then enrolls the machine,
 installs itself as a service (machine-wide when elevated, per-user
 otherwise), and comes online. No inbound ports, no firewall changes.
 
-The dashboard also shows a ready-made command for the machine you are
-enrolling:
+For hands-off or scripted enrollment, redeem the host ID and one-time
+enrollment token from the dashboard directly:
 
 ```bash
-npx nc-agent <host_id> <token>
+npx nc-agent setup <host_id> <token>
 ```
 
 which redeems that enrollment directly — useful for scripted setups.

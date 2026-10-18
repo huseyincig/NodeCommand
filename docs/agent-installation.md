@@ -29,10 +29,11 @@ service files.
 
 ### Direct enrollment command
 
-The dashboard offers a per-machine command:
+The dashboard provides a per-machine host ID and one-time enrollment
+token — redeem them directly:
 
 ```bash
-npx nc-agent <host_id> <token>
+npx nc-agent setup <host_id> <token>
 ```
 
 Use it for scripted or hands-off enrollment. Enrollment tokens are
@@ -54,7 +55,7 @@ manual update step is required; update status is visible in the dashboard.
 ## Uninstall
 
 ```bash
-npx nc-agent remove
+npx nc-agent uninstall
 ```
 
 This removes the local runtime and service registration while preserving

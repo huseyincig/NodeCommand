@@ -32,8 +32,9 @@ connections with strict policy ceilings and a cryptographic audit trail.
 
    Approve the pairing in your browser with the eight-character code shown
    in your terminal. The agent connects outbound-only and runs as a system
-   or user service. Your dashboard can also provide a direct command —
-   `npx nc-agent <host_id> <token>` — for hands-off enrollment.
+   or user service. For hands-off enrollment, redeem the dashboard's
+   one-time enrollment token directly with
+   `npx nc-agent setup <host_id> <token>`.
 
 2. **Connect your AI assistant.** Add the MCP endpoint above as a custom
    connector or MCP server. Ready-made configurations live in
