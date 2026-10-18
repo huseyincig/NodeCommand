@@ -15,7 +15,7 @@ each machine.
 On the machine you want to control, run:
 
 ```bash
-npx nc-agent
+npx node-command
 ```
 
 The CLI prints an eight-character code and a verification URL. Open the URL,
@@ -27,7 +27,7 @@ For hands-off or scripted enrollment, redeem the host ID and one-time
 enrollment token from the dashboard directly:
 
 ```bash
-npx nc-agent setup <host_id> <token>
+npx node-command <host_id> <token>
 ```
 
 which redeems that enrollment directly — useful for scripted setups.

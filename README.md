@@ -10,7 +10,7 @@ connections with strict policy ceilings and a cryptographic audit trail.
 - **One connector URL** — `https://mcp.nodecommand.app/mcp`. Clients that
   support MCP OAuth discovery sign in automatically; nothing to copy or
   paste.
-- **Single-command install** — `npx nc-agent` pairs the machine with an
+- **Single-command install** — `npx node-command` pairs the machine with an
   eight-character code, installs it as a service, and verifies it online.
 - **Multi-host fleets** — talk to a cloud VPS, a home lab server, and a
   laptop in the same conversation. No inbound ports, no firewall changes.
@@ -27,14 +27,15 @@ connections with strict policy ceilings and a cryptographic audit trail.
 1. **Install the agent** on the machine you want to control:
 
    ```bash
-   npx nc-agent
+   npx node-command
    ```
 
    Approve the pairing in your browser with the eight-character code shown
    in your terminal. The agent connects outbound-only and runs as a system
    or user service. For hands-off enrollment, redeem the dashboard's
    one-time enrollment token directly with
-   `npx nc-agent setup <host_id> <token>`.
+   `npx node-command <host_id> <token>`. The previous `npx nc-agent`
+   command remains supported as an alias.
 
 2. **Connect your AI assistant.** Add the MCP endpoint above as a custom
    connector or MCP server. Ready-made configurations live in

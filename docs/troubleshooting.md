@@ -2,8 +2,8 @@
 
 | Symptom | Check |
 |---|---|
-| Machine never shows online | Is the agent service running? Is the clock in sync? Re-run `npx nc-agent` to re-enroll if keys were rotated |
-| Pairing code rejected or expired | Codes and enrollment tokens are short-lived — re-run `npx nc-agent` for a fresh one |
+| Machine never shows online | Is the agent service running? Is the clock in sync? Re-run `npx node-command` to re-enroll if keys were rotated |
+| Pairing code rejected or expired | Codes and enrollment tokens are short-lived — re-run `npx node-command` for a fresh one |
 | `CLIENT_NOT_FOUND` | Wrong machine ID, or the machine belongs to another workspace |
 | `HOST_POLICY_DENIED` | The requested capability is not granted to this machine |
 | Update stuck | Check the dashboard job status; the agent rolls back automatically on a failed activation |

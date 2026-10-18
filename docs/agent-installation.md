@@ -14,7 +14,7 @@ WebSocket — no inbound ports and no firewall rules.
 ## Install (recommended: one command)
 
 ```bash
-npx nc-agent
+npx node-command
 ```
 
 1. The CLI requests a device authorization and prints an eight-character
@@ -27,17 +27,20 @@ Install mode is automatic — elevated shells install machine-wide,
 everything else installs per-user. There are no prompts and no manual
 service files.
 
+The previous `npx nc-agent` command remains supported as an alias for the
+same CLI.
+
 ### Direct enrollment command
 
 The dashboard provides a per-machine host ID and one-time enrollment
 token — redeem them directly:
 
 ```bash
-npx nc-agent setup <host_id> <token>
+npx node-command <host_id> <token>
 ```
 
 Use it for scripted or hands-off enrollment. Enrollment tokens are
-single-use and short-lived. Re-running `npx nc-agent` without arguments
+single-use and short-lived. Re-running `npx node-command` without arguments
 resumes a minted-but-unused enrollment or starts a fresh one.
 
 ## Verify
@@ -55,7 +58,7 @@ manual update step is required; update status is visible in the dashboard.
 ## Uninstall
 
 ```bash
-npx nc-agent uninstall
+npx node-command uninstall
 ```
 
 This removes the local runtime and service registration while preserving
