@@ -1,0 +1,70 @@
+name: Bug report
+description: Something went wrong — tell us about it and we'll look into it.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this! Plain language is perfect —
+        no technical details required. Just answer the questions below.
+  - type: textarea
+    id: what-were-you-trying-to-do
+    attributes:
+      label: What were you trying to do?
+      description: What did you set out to do when this happened?
+      placeholder: "For example: connect my computer, set up the app, ask my AI assistant to run something..."
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened instead?
+      description: What did you see? If there was an error message, copy and paste it here. You can also drag a screenshot into this box.
+      placeholder: "Describe what you saw, or paste the error message here..."
+    validations:
+      required: true
+  - type: textarea
+    id: what-did-you-expect
+    attributes:
+      label: What did you expect to happen?
+      description: What did you think would happen instead?
+    validations:
+      required: false
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where does it happen?
+      description: Which computer were you using when this happened?
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+  - type: dropdown
+    id: connection
+    attributes:
+      label: How are you connected?
+      description: Which AI assistant were you using?
+      options:
+        - ChatGPT
+        - Claude
+        - Grok
+        - Muse
+        - Gemini
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce (optional)
+      description: If you can, write down what you did, step by step, so we can try it ourselves.
+      placeholder: |
+        1. I opened ...
+        2. I clicked ...
+        3. Then I saw ...
+    validations:
+      required: false
