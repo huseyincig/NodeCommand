@@ -49,6 +49,11 @@ connections with strict policy ceilings and a cryptographic audit trail.
 
 Full walkthrough: [`docs/getting-started.md`](docs/getting-started.md).
 
+The manifest's `tool_contract` identifies the canonical authoring snapshot.
+Its definition count is not a promise of how many tools a user can call:
+the hosted server composes and permission-filters its public inventory.
+Use authenticated MCP discovery for the callable names and schemas.
+
 ## Documentation
 
 | Guide | What it covers |
